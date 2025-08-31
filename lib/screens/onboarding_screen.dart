@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -15,9 +13,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _page = PageController();
 
   Widget build(BuildContext context) {
-  final double _deviceHeight = MediaQuery.of(context).size.height;
-  final double _deviceWidth = MediaQuery.of(context).size.width;
-
+    final double deviceHeight = MediaQuery.of(context).size.height;
+    final double deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Container(
@@ -25,7 +22,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFFF9E9EA), Color(0xFFEFE5F7)],
+            colors: [Color(0xFFF6E8EE), Color(0xFFEFDBF4), Color(0xFFF2E8F8)],
           ),
         ),
         child: SafeArea(
@@ -34,7 +31,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Expanded(
                 child: PageView(
                   controller: _page,
-                  children: [_Subscriptions(_deviceHeight,_deviceWidth), _ToolKits(_deviceHeight,_deviceWidth)],
+                  children: [
+                    _Subscriptions(deviceHeight, deviceWidth),
+                    _ToolKits(deviceHeight, deviceWidth),
+                  ],
                 ),
               ),
               SizedBox(height: 8),
@@ -53,19 +53,44 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               SizedBox(height: 14),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    elevation: 10,
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 3,horizontal: 5), 
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    border: Border.all(
+                      color: Color(0xFFE9D3F6), 
+                      width: 1.5,
                     ),
-                    backgroundColor: Colors.black,
                   ),
-                  child: Text(
-                    "Get Started",
-                    style: TextStyle(color: Colors.white),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color.fromARGB(255, 183, 183, 183), 
+                          Color.fromARGB(255, 24, 24, 24),
+                          Color(0xFF000000),
+                        ],
+                      ),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                      ),
+                      child: Text(
+                        "Get started",
+                        style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -76,7 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _Subscriptions(_deviceHeight, _deviceWidth) {
+  Widget _Subscriptions(deviceHeight, deviceWidth) {
     return Container(
       padding: EdgeInsets.all(20),
       child: Stack(
@@ -84,18 +109,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Column(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(vertical: _deviceHeight*0.005),
-                padding: EdgeInsets.all(_deviceHeight*0.03),
+                margin: EdgeInsets.symmetric(vertical: deviceHeight * 0.001),
+                padding: EdgeInsets.all(deviceHeight * 0.03),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   gradient: LinearGradient(
-                    colors: [Colors.pink.shade50, Colors.purple.shade50],
+                    colors: [
+                      Color(0xFFF6E8EE),
+                      Color(0xFFEFDBF4),
+                      Color(0xFFF2E8F8),
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black12,
+                      color: Color(0x1AA96686),
                       blurRadius: 10,
                       offset: Offset(0, 5),
                     ),
@@ -110,7 +139,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Row(
                           children: [
                             Image.asset('assets/framer.png'),
-                            SizedBox(width: _deviceWidth*0.025),
+                            SizedBox(width: deviceWidth * 0.025),
                             Text("Framer", style: TextStyle(fontSize: 20)),
                           ],
                         ),
@@ -127,7 +156,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: _deviceHeight*0.006),
+                    SizedBox(height: deviceHeight * 0.006),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -136,7 +165,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
                             backgroundColor: Color(0x0D9013FE),
-                            padding: EdgeInsets.symmetric(horizontal: _deviceHeight*0.03),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: deviceHeight * 0.03,
+                            ),
                           ),
                           child: Text(
                             "View",
@@ -151,7 +182,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
                             backgroundColor: Color(0x0A111111),
-                            padding: EdgeInsets.symmetric(horizontal: _deviceHeight*0.03),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: deviceHeight * 0.03,
+                            ),
                           ),
                           child: Text(
                             "Remind",
@@ -163,7 +196,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
                             backgroundColor: Color(0xFFFFE0E0),
-                            padding: EdgeInsets.symmetric(horizontal: _deviceHeight*0.03),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: deviceHeight * 0.03,
+                            ),
                           ),
                           child: Text(
                             "Cancel",
@@ -176,15 +211,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
 
-              _SubscriptionCard('assets/figma.png', 'Figma', '12', '9', 1,_deviceHeight,_deviceWidth),
-              _SubscriptionCard('assets/notion.png', 'Notion', '12', '16', 0.6,_deviceHeight,_deviceWidth),
+              _SubscriptionCard(
+                'assets/figma.png',
+                'Figma',
+                '12',
+                '9',
+                1,
+                deviceHeight,
+                deviceWidth,
+              ),
+              _SubscriptionCard(
+                'assets/notion.png',
+                'Notion',
+                '12',
+                '16',
+                0.6,
+                deviceHeight,
+                deviceWidth,
+              ),
               _SubscriptionCard(
                 'assets/chatgpt.png',
                 'Chatgpt',
                 '12',
                 '24',
                 0.4,
-                _deviceHeight,_deviceWidth
+                deviceHeight,
+                deviceWidth,
               ),
               SizedBox(height: 9),
               _SubscriptionCard(
@@ -192,8 +244,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 'Blender',
                 '12',
                 '24',
-                0.3,
-                _deviceHeight,_deviceWidth
+                0.1,
+                deviceHeight,
+                deviceWidth,
               ),
             ],
           ),
@@ -201,7 +254,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: _deviceHeight * 0.18,
+              height: deviceHeight * 0.18,
               child: Column(
                 children: [
                   Text(
@@ -213,7 +266,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       letterSpacing: 1,
                     ),
                   ),
-                  SizedBox(height: _deviceHeight*0.02),
+                  SizedBox(height: deviceHeight * 0.02),
                   Text(
                     "Stay On Top of what you want to pay for",
                     textAlign: TextAlign.center,
@@ -240,22 +293,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Opacity(
       opacity: withOpacity,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: deviceHeight * 0.015),
-        padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.025, vertical: deviceHeight * 0.025),
+        margin: EdgeInsets.symmetric(vertical: deviceHeight * 0.013),
+        padding: EdgeInsets.symmetric(
+          horizontal: deviceWidth * 0.025,
+          vertical: deviceHeight * 0.025,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           gradient: LinearGradient(
-            colors: [Colors.pink.shade50, Colors.purple.shade50],
+            colors: [Color(0xFFF6E8EE), Color(0xFFEFDBF4), Color(0xFFF2E8F8)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
+
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
-              blurRadius: 10,
+              color: Color(0x1AA96686),
+              blurRadius: 40,
               offset: Offset(0, 5),
             ),
           ],
+
+          border: Border.all(color: Colors.white, width: 0.4),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -272,10 +331,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 Text(
                   '\$$price',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   "Billed in $billingInfo days",
@@ -289,9 +345,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _ToolKits(_deviceHeight, _deviceWidth) {
+  Widget _ToolKits(deviceHeight, deviceWidth) {
     return Container(
-      padding: EdgeInsets.all(_deviceHeight*0.020),
+      padding: EdgeInsets.all(deviceHeight * 0.020),
       child: Stack(
         children: [
           Column(
@@ -315,7 +371,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   'assets/notion.png',
                   'assets/stripe.png',
                 ],
-                bottomText: "Curated by Sam Ortega  building profitable products solo",
+                bottomText:
+                    "Curated by Sam Ortega  building profitable products solo",
               ),
               SizedBox(height: 17),
               Kits(
@@ -326,35 +383,34 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   'assets/framer.png',
                   'assets/canvas.png',
                 ],
-                bottomText: "Curated by Kendra Holt helping distributed teams thrive",
-              ),
-
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  margin: EdgeInsets.only(top: _deviceHeight * 0.0034),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Work Like the \nbest",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                      // SizedBox(height: 20),
-                      Text(
-                        "Discover proven tools from the people who master their craft",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
+                bottomText:
+                    "Curated by Kendra Holt helping distributed teams thrive",
               ),
             ],
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: deviceHeight * 0.18,
+              child: Column(
+                children: [
+                  Text(
+                    "Work Like the \nbest",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                  Text(
+                    "Discover proven tools from the people who master their craft",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
@@ -404,7 +460,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           padding: EdgeInsets.only(right: 28.0),
                           child: Image.asset(
                             url,
-                            height: 35, // fixed size
+                            height: 35,
                             width: 35,
                             fit: BoxFit.contain,
                           ),
@@ -414,7 +470,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             SizedBox(height: 20),
 
-            Text(bottomText, style: TextStyle(color: Colors.grey.shade700,fontSize: 12.5)),
+            Text(
+              bottomText,
+              style: TextStyle(color: Colors.grey.shade700, fontSize: 12.5),
+            ),
           ],
         ),
       ),
