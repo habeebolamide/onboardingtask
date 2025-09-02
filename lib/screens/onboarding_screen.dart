@@ -15,8 +15,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _page = PageController();
 
   Widget build(BuildContext context) {
-    final double deviceHeight = MediaQuery.of(context).size.height;
-    final double deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Container(
@@ -34,12 +32,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: PageView(
                   controller: _page,
                   children: [
-                    _Subscriptions(deviceHeight, deviceWidth),
-                    _ToolKits(deviceHeight, deviceWidth),
+                    _Subscriptions(),
+                    _ToolKits(),
                   ],
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 8.h),
               SmoothPageIndicator(
                 controller: _page,
                 count: 2,
@@ -81,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
-                        padding: EdgeInsets.symmetric(vertical: 16),
+                        padding: EdgeInsets.symmetric(vertical: getProportionateScreenHeight(16)),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(100),
                         ),
@@ -103,7 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _Subscriptions(deviceHeight, deviceWidth) {
+  Widget _Subscriptions() {
     return Container(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
       child: Stack(
@@ -220,27 +218,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 'Figma',
                 '12',
                 '9',
-                1,
-                deviceHeight,
-                deviceWidth,
+                1
               ),
               _SubscriptionCard(
                 'assets/notion.png',
                 'Notion',
                 '12',
                 '16',
-                0.6,
-                deviceHeight,
-                deviceWidth,
+                0.6
               ),
               _SubscriptionCard(
                 'assets/chatgpt.png',
                 'Chatgpt',
                 '12',
                 '24',
-                0.4,
-                deviceHeight,
-                deviceWidth,
+                0.4
               ),
               SizedBox(height: 9.h),
               _SubscriptionCard(
@@ -248,9 +240,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 'Blender',
                 '12',
                 '24',
-                0.1,
-                deviceHeight,
-                deviceWidth,
+                0.1
               ),
             ],
           ),
@@ -291,8 +281,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     String price,
     String billingInfo,
     double withOpacity,
-    double deviceHeight,
-    double deviceWidth,
   ) {
     return Opacity(
       opacity: withOpacity,
@@ -349,9 +337,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _ToolKits(deviceHeight, deviceWidth) {
+  Widget _ToolKits() {
     return Container(
-      padding: EdgeInsets.all(deviceHeight * 0.020),
+       padding: EdgeInsets.symmetric(
+          horizontal: getProportionateScreenWidth(20),
+          vertical: getProportionateScreenHeight(25),
+        ),
       child: Stack(
         children: [
           Column(
