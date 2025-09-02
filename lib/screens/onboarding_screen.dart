@@ -234,7 +234,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 '24',
                 0.4
               ),
-              SizedBox(height: 2.h),
+              SizedBox(height: 7.h),
               _SubscriptionCard(
                 'assets/blender.png',
                 'Blender',
@@ -248,7 +248,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: getProportionateScreenHeight(110),
+              height: getProportionateScreenHeight(125),
               child: Column(
                 children: [
                   Text(
@@ -386,7 +386,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: getProportionateScreenHeight(110),
+              height: getProportionateScreenHeight(125),
               child: Column(
                 children: [
                   Text(
