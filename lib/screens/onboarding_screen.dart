@@ -234,13 +234,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 '24',
                 0.4
               ),
-              SizedBox(height: 9.h),
+              SizedBox(height: 2.h),
               _SubscriptionCard(
                 'assets/blender.png',
                 'Blender',
                 '12',
                 '24',
-                0.1
+                0.2
               ),
             ],
           ),
@@ -288,7 +288,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         margin: EdgeInsets.only(bottom: 18.h),
         padding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenWidth(20),
-          vertical: getProportionateScreenHeight(25),
+          vertical: getProportionateScreenHeight(23),
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.w),
@@ -340,8 +340,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget _ToolKits() {
     return Container(
        padding: EdgeInsets.symmetric(
-          horizontal: getProportionateScreenWidth(20),
-          vertical: getProportionateScreenHeight(25),
+          horizontal: getProportionateScreenWidth(14),
+          vertical: getProportionateScreenHeight(14),
         ),
       child: Stack(
         children: [
